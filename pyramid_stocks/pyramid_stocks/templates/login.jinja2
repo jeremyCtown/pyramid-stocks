@@ -1,37 +1,22 @@
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stock Portfolio - Login</title>
+{% extends "index.jinja2" %}
 
-  <link rel="icon" type="image/png" href=""/>
-  <!-- Style sheets-->
-  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Molle:400i" rel="stylesheet">
-  <link rel="stylesheet" href="styles/normalize.css">
-  <link rel="stylesheet" href="styles/base.css">
-  <link rel="stylesheet" href="styles/layout.css">
-  <link rel="stylesheet" href="styles/modules.css">
+{% block content %}
+<h1>Registration</h1>
+<form id="registration-form" method="POST" action="{{request.route_url('auth')}}">
+  <input type="text" name="username">
+  <input type="email" name="email">
+  <input type="password" name="password">
+  <input type="submit" name="submit" value="Sign-up">
+</form>
 
-  <!-- HANDLEBARS SECTION-->
+<h1>Sign-in</h1>
+<form
+  id="signin-form"
+  method="GET"
+  action="{{request.route_url('auth')}}">
 
-</head>
-
-<body>
-  <div id="body-background">
-  <header>
-    <h1>Stock Portfolio - Login</h1>
-    <nav class="navigation">
-            <a class="nav-links" href="/">Portfolio</a>
-      </nav>
-  </header>
-
-  <main>
-      <section class="">
-      </section>
-  </main>
-
-  <footer>
-  </footer>
-  </div>
-</body>
-</html>
+  <input type="text" name="username">
+  <input type="password" name="password" pattern="[0-9]{8}">
+  <input type="submit" name="submit" value="Sign-in">
+</form>
+{% endblock content %}
