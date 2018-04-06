@@ -1,6 +1,12 @@
 {% extends "index.jinja2" %}
 
 {% block content %}
-<h1>Stock Details</h1>
-<p>You're viewing a detail page for a single stock in my portfolio!</p>
+<h1>{{stock.companyName}}</h1>
+<p>{{stock.website}}</p>
+<p>CEO: {{stock.CEO}}</p>
+<p>Industry:{{industry}}</p>
+<p>Sector:{{sector}}</p>
+<p>Securities:{{issueType}}</p>
+<p>Summary:{{description}}</p>
+
 {% endblock content %}

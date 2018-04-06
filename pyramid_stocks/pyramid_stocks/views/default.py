@@ -39,8 +39,8 @@ def auth_view(request):
 
 
 @view_config(
-    route_name='detail',
-    renderer='../templates/portfolio-detail.jinja2',
+    route_name='stock',
+    renderer='../templates/stock-detail.jinja2',
     request_method='GET')
 def detail_view(request):
     return {}
@@ -51,7 +51,6 @@ def detail_view(request):
     renderer='../templates/portfolio.jinja2',
     request_method='GET')
 def portfolio_view(request):
-    from random import randint
 
     return {
         'entries': MOCK_DATA
@@ -59,10 +58,14 @@ def portfolio_view(request):
 
 
 @view_config(
-    route_name='stock',
-    renderer='../templates/stock.jinja2',
+    route_name='detail',
+    renderer='../templates/portfolio-detail.jinja2',
     request_method='GET')
-def new_view(request):
-    return {}
+def portfolio_stock_view(request):
+    query = request.params('symbol')
+    for entry in MOCK_DATA:
+        if entry['symbol'] == query:
+            stock = entry
+    return stock
 
 
