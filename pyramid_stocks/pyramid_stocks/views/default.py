@@ -42,7 +42,7 @@ def auth_view(request):
     route_name='stock',
     renderer='../templates/stock-detail.jinja2',
     request_method='GET')
-def detail_view(request):
+def stock_view(request):
     return {}
 
 
