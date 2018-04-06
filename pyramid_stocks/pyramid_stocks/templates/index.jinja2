@@ -1,37 +1,34 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stock Portfolio</title>
-
-  <link rel="icon" type="image/png" href=""/>
-  <!-- Style sheets-->
-  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Molle:400i" rel="stylesheet">
-  <link rel="stylesheet" href="styles/normalize.css">
-  <link rel="stylesheet" href="styles/base.css">
-  <link rel="stylesheet" href="styles/layout.css">
-  <link rel="stylesheet" href="styles/modules.css">
-
-  <!-- HANDLEBARS SECTION-->
-
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="{{request.static_url('pyramid_stocks:static/normalize.css')}}">
+  <link rel="stylesheet" href="{{request.static_url('pyramid_stocks:static/base.css')}}">
+  <link rel="stylesheet" href="{{request.static_url('pyramid_stocks:static/layout.css')}}">
+  <link rel="stylesheet" href="{{request.static_url('pyramid_stocks:static/modules.css')}}">
+  <title>Document</title>
 </head>
-
 <body>
-  <div id="body-background">
   <header>
-    <h1>Stock Portfolio</h1>
-    <nav class="navigation">
-            <a class="nav-links" href="/">Portfolio</a>
-      </nav>
+    <nav>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/auth">Login/Register</a></li>
+        <li><a href="/portfolio">Portfolio</a></li>
+        <li><a href="/stock">Stocks</a></li>
+      </ul>
+    </nav>
   </header>
-
   <main>
-      <section class="">
-      </section>
-  </main>
+    <h1>Jeremy's Portfolio</h1>
+    <p>Making paper since 2009</p>
 
-  <footer>
-  </footer>
-  </div>
+    {% block content %}
+    <p>No content</p>
+    {% endblock content %}
+
+  </main>
 </body>
 </html>

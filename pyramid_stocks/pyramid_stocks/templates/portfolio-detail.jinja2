@@ -1,37 +1,14 @@
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stock Portfolio - Detail</title>
+from default import 
 
-  <link rel="icon" type="image/png" href=""/>
-  <!-- Style sheets-->
-  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Molle:400i" rel="stylesheet">
-  <link rel="stylesheet" href="styles/normalize.css">
-  <link rel="stylesheet" href="styles/base.css">
-  <link rel="stylesheet" href="styles/layout.css">
-  <link rel="stylesheet" href="styles/modules.css">
+{% extends "index.jinja2" %}
 
-  <!-- HANDLEBARS SECTION-->
+{% block content %}
+<h1>{{stock.companyName}}</h1>
+<p>{{stock.website}}</p>
+<p>CEO: {{stock.CEO}}</p>
+<p>Industry:{{stock.industry}}</p>
+<p>Sector:{{stock.sector}}</p>
+<p>Securities:{{stock.issueType}}</p>
+<p>Summary:{{stock.description}}</p>
 
-</head>
-
-<body>
-  <div id="body-background">
-  <header>
-    <h1>Portfolio - Stock Details</h1>
-    <nav class="navigation">
-            <a class="nav-links" href="/">Portfolio</a>
-      </nav>
-  </header>
-
-  <main>
-      <section class="">
-      </section>
-  </main>
-
-  <footer>
-  </footer>
-  </div>
-</body>
-</html>
+{% endblock content %}
