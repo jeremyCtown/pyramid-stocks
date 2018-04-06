@@ -1,5 +1,4 @@
 from pyramid.view import view_config
-# from pyramid.response import Response
 from ..sample_data import MOCK_DATA
 from pyramid.httpexceptions import HTTPFound, HTTPNotFound
 
@@ -61,7 +60,11 @@ def portfolio_view(request):
     renderer='../templates/portfolio-detail.jinja2',
     request_method='GET')
 def portfolio_stock_view(request):
-    for entry in MOCK_DATA:
-        if entry['symbol'] == request.matchdict['symbol']:
-            return {'stock': entry}
+    try:
+        for entry in MOCK_DATA:
+            if entry['symbol'] == request.matchdict['symbol']:
+                return {'stock': entry}
+    
+    except KeyError:
+        return {}
 
