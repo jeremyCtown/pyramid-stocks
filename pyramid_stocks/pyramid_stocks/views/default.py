@@ -1,7 +1,9 @@
 from pyramid.view import view_config
 from ..sample_data import MOCK_DATA
 from pyramid.httpexceptions import HTTPFound, HTTPNotFound
+import requests
 
+API_URL = 'https://api.iextrading.com/1.0'
 
 @view_config(
     route_name='home',
@@ -42,7 +44,18 @@ def auth_view(request):
     renderer='../templates/stock-detail.jinja2',
     request_method='GET')
 def stock_view(request):
-    return {}
+    if request.method == 'GET':
+        try:
+            symbol = request.GET['symbol']
+            reponse = requests.get(API_URL + '/stock/{}/company'.format(symbol))
+            data = response.json()
+            return {'company': data}
+
+        except KeyError:
+            return {}
+
+    else:
+        raise HTTPNotFound()
 
 
 @view_config(
