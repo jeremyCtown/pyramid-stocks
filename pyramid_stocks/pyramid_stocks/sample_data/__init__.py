@@ -109,3 +109,4 @@ MOCK_DATA = [
         "issueType": "cs",
         "sector": "Industrials"
     }
+]

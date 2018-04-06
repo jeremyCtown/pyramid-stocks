@@ -1,37 +1,16 @@
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Stock Portfolio - Portfolio View</title>
+{% extends "index.jinja2" %}
 
-  <link rel="icon" type="image/png" href=""/>
-  <!-- Style sheets-->
-  <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Molle:400i" rel="stylesheet">
-  <link rel="stylesheet" href="styles/normalize.css">
-  <link rel="stylesheet" href="styles/base.css">
-  <link rel="stylesheet" href="styles/layout.css">
-  <link rel="stylesheet" href="styles/modules.css">
+{% block content %}
+<h1>Welcome to my Portfolio</h1>
 
-  <!-- HANDLEBARS SECTION-->
-
-</head>
-
-<body>
-  <div id="body-background">
-  <header>
-    <h1>Stock Portfolio - Portfolio</h1>
-    <nav class="navigation">
-            <a class="nav-links" href="/">Portfolio</a>
-      </nav>
-  </header>
-
-  <main>
-      <section class="">
-      </section>
-  </main>
-
-  <footer>
-  </footer>
-  </div>
-</body>
-</html>
+<ul>
+  {% for entry in entries %}
+  <li>
+    <h3>{{entry.companyName}}</h3>
+    <p>({{entry.website}})</p>
+    <p>'CEO: ' + {{entry.CEO}}</p>
+    <p><a href="{{request.route_url('portfolio', symbol=entry.symbol)}}">View more</a></p>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock content %}
