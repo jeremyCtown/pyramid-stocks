@@ -1,12 +1,14 @@
+from default import 
+
 {% extends "index.jinja2" %}
 
 {% block content %}
 <h1>{{stock.companyName}}</h1>
 <p>{{stock.website}}</p>
 <p>CEO: {{stock.CEO}}</p>
-<p>Industry:{{industry}}</p>
-<p>Sector:{{sector}}</p>
-<p>Securities:{{issueType}}</p>
-<p>Summary:{{description}}</p>
+<p>Industry:{{stock.industry}}</p>
+<p>Sector:{{stock.sector}}</p>
+<p>Securities:{{stock.issueType}}</p>
+<p>Summary:{{stock.description}}</p>
 
 {% endblock content %}

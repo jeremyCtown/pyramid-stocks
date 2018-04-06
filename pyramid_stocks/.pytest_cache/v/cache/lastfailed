@@ -1,3 +1,4 @@
 {
-  "pyramid_stocks/scripts/initializedb.py": true
+  "pyramid_stocks/tests/tests.py::test_default_behavior_of_base_view": true, 
+  "pyramid_stocks/tests/tests.py::test_default_behavior_of_entries_view": true
 }

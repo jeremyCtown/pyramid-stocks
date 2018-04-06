@@ -9,7 +9,7 @@ MOCK_DATA = [
         "CEO": "John L. Flannery",
         "issueType": "cs",
         "sector": "Industrials"
-    },    
+    },
     {
         "symbol": "AAPL",
         "companyName": "Apple Inc",
@@ -20,7 +20,7 @@ MOCK_DATA = [
         "CEO": "John L. Flannery",
         "issueType": "cs",
         "sector": "Industrials"
-    },    
+    },
     {
         "symbol": "AMZN",
         "companyName": "Amazon",
@@ -31,7 +31,7 @@ MOCK_DATA = [
         "CEO": "John L. Flannery",
         "issueType": "cs",
         "sector": "Industrials"
-    },    
+    },
     {
         "symbol": "MSFT",
         "companyName": "Microsoft Corporation",
@@ -42,7 +42,7 @@ MOCK_DATA = [
         "CEO": "John L. Flannery",
         "issueType": "cs",
         "sector": "Industrials"
-    },    
+    },
     {
         "symbol": "TSLA",
         "companyName": "Tesla",
@@ -53,7 +53,7 @@ MOCK_DATA = [
         "CEO": "John L. Flannery",
         "issueType": "cs",
         "sector": "Industrials"
-    },    
+    },
     {
         "symbol": "GOOGL",
         "companyName": "Alphabet, Inc",
@@ -64,7 +64,7 @@ MOCK_DATA = [
         "CEO": "John L. Flannery",
         "issueType": "cs",
         "sector": "Industrials"
-    },    
+    },
     {
         "symbol": "TMUS",
         "companyName": "T-Mobile US",
@@ -75,7 +75,7 @@ MOCK_DATA = [
         "CEO": "John L. Flannery",
         "issueType": "cs",
         "sector": "Industrials"
-    },    
+    },
     {
         "symbol": "NFLX",
         "companyName": "Netflix",
@@ -86,7 +86,7 @@ MOCK_DATA = [
         "CEO": "John L. Flannery",
         "issueType": "cs",
         "sector": "Industrials"
-    },    
+    },
     {
         "symbol": "LVLT",
         "companyName": "Level 3 Communications",

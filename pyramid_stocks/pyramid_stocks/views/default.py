@@ -1,5 +1,5 @@
 from pyramid.view import view_config
-from pyramid.response import Response
+# from pyramid.response import Response
 from ..sample_data import MOCK_DATA
 from pyramid.httpexceptions import HTTPFound, HTTPNotFound
 
@@ -51,7 +51,6 @@ def detail_view(request):
     renderer='../templates/portfolio.jinja2',
     request_method='GET')
 def portfolio_view(request):
-
     return {
         'entries': MOCK_DATA
     }
@@ -62,10 +61,7 @@ def portfolio_view(request):
     renderer='../templates/portfolio-detail.jinja2',
     request_method='GET')
 def portfolio_stock_view(request):
-    query = request.params('symbol')
     for entry in MOCK_DATA:
-        if entry['symbol'] == query:
-            stock = entry
-    return stock
-
+        if entry['symbol'] == request.matchdict['symbol']:
+            return {'stock': entry}
 
