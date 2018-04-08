@@ -47,7 +47,7 @@ def stock_view(request):
     if request.method == 'GET':
         try:
             symbol = request.GET['symbol']
-            reponse = requests.get(API_URL + '/stock/{}/company'.format(symbol))
+            response = requests.get(API_URL + '/stock/{}/company'.format(symbol))
             data = response.json()
             return {'company': data}
 
