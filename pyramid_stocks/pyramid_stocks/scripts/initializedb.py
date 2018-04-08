@@ -19,6 +19,9 @@ from pyramid.scripts.common import parse_vars
 
 
 def usage(argv):
+    """
+    Comes built in
+    """
     cmd = os.path.basename(argv[0])
     print('usage: %s <config_uri> [var=value]\n'
           '(example: "%s development.ini")' % (cmd, cmd))
@@ -26,6 +29,9 @@ def usage(argv):
 
 
 def main(argv=sys.argv):
+    """
+    Comes built in
+    """
     if len(argv) < 2:
         usage(argv)
     config_uri = argv[1]

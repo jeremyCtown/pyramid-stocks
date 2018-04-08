@@ -10,6 +10,9 @@ API_URL = 'https://api.iextrading.com/1.0'
     renderer='../templates/index.jinja2',
     request_method='GET')
 def home_view(request):
+    """
+    Returns home view
+    """
     return {}
 
 
@@ -17,6 +20,9 @@ def home_view(request):
     route_name='auth',
     renderer='../templates/login.jinja2')
 def auth_view(request):
+    """
+    Returns login page
+    """
     if request.method == 'GET':
         try:
             username = request.GET['username']
@@ -44,6 +50,9 @@ def auth_view(request):
     renderer='../templates/stock-detail.jinja2',
     request_method='GET')
 def stock_view(request):
+    """
+    Returns search form for an individual stock
+    """
     if request.method == 'GET':
         try:
             symbol = request.GET['symbol']
@@ -63,6 +72,9 @@ def stock_view(request):
     renderer='../templates/portfolio.jinja2',
     request_method='GET')
 def portfolio_view(request):
+    """
+    Returns portfolio view with MOCK_DATA
+    """
     return {
         'entries': MOCK_DATA
     }
@@ -73,6 +85,9 @@ def portfolio_view(request):
     renderer='../templates/portfolio-detail.jinja2',
     request_method='GET')
 def portfolio_stock_view(request):
+    """
+    Shows individual stock
+    """
     try:
         for entry in MOCK_DATA:
             if entry['symbol'] == request.matchdict['symbol']:
