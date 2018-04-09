@@ -1,4 +1,5 @@
 from pyramid.view import view_config
+from pyramid.response import Response
 from ..sample_data import MOCK_DATA
 from pyramid.httpexceptions import HTTPFound, HTTPNotFound
 import requests
@@ -47,8 +48,7 @@ def auth_view(request):
 
 @view_config(
     route_name='stock',
-    renderer='../templates/stock-detail.jinja2',
-    request_method='GET')
+    renderer='../templates/stock-detail.jinja2')
 def stock_view(request):
     """
     Returns search form for an individual stock
@@ -56,28 +56,34 @@ def stock_view(request):
     if request.method == 'GET':
         try:
             symbol = request.GET['symbol']
-            response = requests.get(API_URL + '/stock/{}/company'.format(symbol))
-            data = response.json()
-            return {'company': data}
-
         except KeyError:
             return {}
-
+        response = requests.get(API_URL + '/stock/{}/company'.format(symbol))
+        data = response.json()
+        return {'company': data}
+    
     else:
         raise HTTPNotFound()
 
 
 @view_config(
     route_name='portfolio',
-    renderer='../templates/portfolio.jinja2',
-    request_method='GET')
+    renderer='../templates/portfolio.jinja2')
 def portfolio_view(request):
     """
     Returns portfolio view with MOCK_DATA
     """
-    return {
-        'entries': MOCK_DATA
-    }
+    if request.method == 'GET':
+        return {
+            'entries': MOCK_DATA
+        }
+
+    if request.method == 'POST':
+        symbol = request.POST['symbol']
+        response = requests.get(API_URL + '/stock/{}/company'.format(symbol))
+        data = response.json()
+        MOCK_DATA.append(data)
+        return {'entries': MOCK_DATA}
 
 
 @view_config(
@@ -95,4 +101,6 @@ def portfolio_stock_view(request):
     
     except KeyError:
         return {}
+
+
 
