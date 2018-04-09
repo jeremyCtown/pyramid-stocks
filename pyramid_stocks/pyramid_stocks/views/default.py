@@ -1,5 +1,8 @@
 from pyramid.view import view_config
 from pyramid.response import Response
+from . import DB_ERR_MSG
+from sqlalchemy.exc import DBAPIError
+from models import Stock
 from ..sample_data import MOCK_DATA
 from pyramid.httpexceptions import HTTPFound, HTTPNotFound
 import requests
@@ -73,17 +76,28 @@ def portfolio_view(request):
     """
     Returns portfolio view with MOCK_DATA
     """
+    
     if request.method == 'GET':
-        return {
-            'entries': MOCK_DATA
-        }
+        try:
+            query = request.dbsession.query(Stock)
+            all_entries = query.all()
+        except DBAPIError:
+            return DBAPIError(DB_ERR_MSG, content_type='text/plain', status=500)
 
-    if request.method == 'POST':
-        symbol = request.POST['symbol']
-        response = requests.get(API_URL + '/stock/{}/company'.format(symbol))
-        data = response.json()
-        MOCK_DATA.append(data)
-        return {'entries': MOCK_DATA}
+        return {'entries': all_entries}
+
+
+    # if request.method == 'GET':
+    #     return {
+    #         'entries': MOCK_DATA
+    #     }
+
+    # if request.method == 'POST':
+    #     symbol = request.POST['symbol']
+    #     response = requests.get(API_URL + '/stock/{}/company'.format(symbol))
+    #     data = response.json()
+    #     MOCK_DATA.append(data)
+    #     return {'entries': MOCK_DATA}
 
 
 @view_config(
