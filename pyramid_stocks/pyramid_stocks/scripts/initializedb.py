@@ -30,7 +30,7 @@ def usage(argv):
 
 def main(argv=sys.argv):
     """
-    Comes built in
+    Seeds database when script is run
     """
     if len(argv) < 2:
         usage(argv)
