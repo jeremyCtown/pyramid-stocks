@@ -8,9 +8,19 @@
 
 {% if company %}
 <div>
-    {{company}}
+  <h1>{{company.companyName}}</h1>
+  <p>Symbol: {{company.symbol}}</p>
+  <p>{{company.website}}</p>
+  <p>CEO: {{company.CEO}}</p>
+  <p>Industry:{{company.industry}}</p>
+  <p>Sector:{{company.sector}}</p>
+  <p>Securities:{{company.issueType}}</p>
+  <p>Summary:{{company.description}}</p>
 </div>
+<form id='hidden'action="{{request.route_url('portfolio')}}" method="POST">
+  <input type="hidden" name="symbol" value="{{company.symbol}}">
+  <button type="submit">Add to Portfolio</button>
+</form>
+{% endif %}
 
 {% endblock content %}
-
-<-- need a button using MOCK_DATA.append() -->

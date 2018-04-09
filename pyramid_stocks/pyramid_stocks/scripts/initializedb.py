@@ -9,13 +9,13 @@ from pyramid.paster import (
 
 from pyramid.scripts.common import parse_vars
 
-# from ..models.meta import Base
-# from ..models import (
-#     get_engine,
-#     get_session_factory,
-#     get_tm_session,
-#     )
-# from ..models import MyModel
+from ..models.meta import Base
+from ..models import (
+    get_engine,
+    get_session_factory,
+    get_tm_session,
+    )
+from ..models import MyModel
 
 
 def usage(argv):
@@ -30,7 +30,7 @@ def usage(argv):
 
 def main(argv=sys.argv):
     """
-    Comes built in
+    Seeds database when script is run
     """
     if len(argv) < 2:
         usage(argv)
