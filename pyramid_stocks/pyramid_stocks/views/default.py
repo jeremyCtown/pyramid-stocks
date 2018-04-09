@@ -108,13 +108,28 @@ def portfolio_stock_view(request):
     """
     Shows individual stock
     """
-    try:
-        for entry in MOCK_DATA:
-            if entry['symbol'] == request.matchdict['symbol']:
-                return {'stock': entry}
     
-    except KeyError:
-        return {}
+    try:
+        entry_id = request.matchdict['symbol']
+    except IndexError:
+        return HTTPNotFound()
+
+    try:
+        query = request.dbsession.query(Stock)
+        stock_detail = query.filter(Stock.symbol == entry_id).first()
+    except DBAPIError:
+        return DBAPIError(DB_ERR_MSG, content_type='txt/plain', status=500)
+    
+    # res = requests.get
+    
+    
+    # try:
+    #     for entry in MOCK_DATA:
+    #         if entry['symbol'] == request.matchdict['symbol']:
+    #             return {'stock': entry}
+    
+    # except KeyError:
+    #     return {}
 
 
 
