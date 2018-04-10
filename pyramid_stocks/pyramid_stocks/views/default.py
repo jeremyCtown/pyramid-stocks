@@ -3,6 +3,7 @@ from pyramid.response import Response
 from ..sample_data import MOCK_DATA
 from pyramid.httpexceptions import HTTPFound, HTTPNotFound
 import requests
+from pyramid.security import NO_PERMISSION_REQUIRED
 
 API_URL = 'https://api.iextrading.com/1.0'
 
