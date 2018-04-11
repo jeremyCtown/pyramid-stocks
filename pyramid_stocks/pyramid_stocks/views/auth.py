@@ -37,7 +37,7 @@ def auth_view(request):
                 request.dbsession.add(instance)
                 request.dbsession.flush()
             except IntegrityError:
-                return HTTPConflict('That username already exists. Please try again')
+                return {'error': 'something went wrong'}
 
             return HTTPFound(location=request.route_url('entries'), headers=headers)
 
