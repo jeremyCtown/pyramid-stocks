@@ -3,12 +3,15 @@ from default import
 {% extends "index.jinja2" %}
 
 {% block content %}
-<h1>{{stock.companyName}}</h1>
-<p>{{stock.website}}</p>
-<p>CEO: {{stock.CEO}}</p>
-<p>Industry:{{stock.industry}}</p>
-<p>Sector:{{stock.sector}}</p>
-<p>Securities:{{stock.issueType}}</p>
-<p>Summary:{{stock.description}}</p>
+<div id="portfolio-detail">
+    <h1>{{stock.companyName}}</h1>
+    <p>{{stock.website}}</p>
+    <p>CEO: {{stock.CEO}}</p>
+    <p>Industry: {{stock.industry}}</p>
+    <p>Sector: {{stock.sector}}</p>
+    <p>Exchange: {{stock.exchange}}</p>
+    <p>Securities:{{stock.issueType}}</p>
+    <p>Summary:{{stock.description}}</p>
+</div>
 
 {% endblock content %}
