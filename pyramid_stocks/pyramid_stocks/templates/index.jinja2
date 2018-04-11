@@ -14,10 +14,14 @@
   <header>
     <nav>
       <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/auth">Login/Register</a></li>
-        <li><a href="/portfolio">Portfolio</a></li>
-        <li><a href="/stock">Stocks</a></li>
+        <li><a href="{{request.route_url('home')}}">Home</a></li>
+        {% if request.authenticated_userid %}
+        <li><a href="{{request.route_url('portfolio')}}">Portfolio</a></li>
+        <li><a href="{{request.route_url('stock')}}">Stock Search</a></li>
+        <li><a href="{{request.route_url('logout)}}">Logout</a></li>
+        {% else %}
+        <li><a href="{{request.route_url('auth')}}">Login/Register</a></li>
+        {{% endif}}
       </ul>
     </nav>
   </header>

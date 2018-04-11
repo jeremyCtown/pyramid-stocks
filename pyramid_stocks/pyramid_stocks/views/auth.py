@@ -25,7 +25,19 @@ def auth_view(request):
             )
 
             headers = remember(request, userid=instance.username)
-            request.dbsession.add(instance)
+            # query = request.dbsession.query(Account)
+            # is_in_db = query.filter(Account.username == instance.username).one_or_none()
+            # request.dbsession.add(instance)
+            # if is_in_db is None:
+            #     request.dbsession.add(instance)
+            # else:
+            #     return HTTPConflict('That username already exists. Please try again')
+
+            try:
+                request.dbsession.add(instance)
+                request.dbsession.flush()
+            except IntegrityError:
+                return HTTPConflict('That username already exists. Please try again')
 
             return HTTPFound(location=request.route_url('entries'), headers=headers)
 

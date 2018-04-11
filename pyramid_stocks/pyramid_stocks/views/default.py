@@ -77,7 +77,6 @@ def portfolio_view(request):
     """
     Returns portfolio view with MOCK_DATA
     """
-    
     if request.method == 'GET':
         try:
             query = request.dbsession.query(Stock)
@@ -109,7 +108,6 @@ def portfolio_stock_view(request):
     """
     Shows individual stock
     """
-    
     try:
         entry_id = request.matchdict['symbol']
     except IndexError:
