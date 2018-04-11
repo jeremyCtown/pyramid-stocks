@@ -18,6 +18,9 @@ def home_view(request):
     """
     Returns home view
     """
+    if request.authenticated_userid is not None:
+        return HTTPFound(location=request.route_url('portfolio'))
+
     return {}
 
 
