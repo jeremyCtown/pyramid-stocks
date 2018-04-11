@@ -5,7 +5,7 @@ from sqlalchemy.exc import
 
 
 
-
+@view_config
 
 def auth_view(request):
     if request.method == 'POST':

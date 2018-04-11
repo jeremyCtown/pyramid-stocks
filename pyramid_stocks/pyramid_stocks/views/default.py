@@ -50,7 +50,7 @@ def auth_view(request):
 
         return HTTPFound(location=request.route_url('portfolio'))
 
-    return HTTPNotFound()
+    raise HTTPNotFound()
 
 
 @view_config(
@@ -83,7 +83,7 @@ def portfolio_view(request):
     if request.method == 'GET':
         try:
             query = request.dbsession.query(Stock)
-            all_entries = query.all()
+            user_entries = query.filter(Stock.account_id == request.authenticated_userid)
         except DBAPIError:
             return DBAPIError(DB_ERR_MSG, content_type='text/plain', status=500)
 
@@ -114,13 +114,22 @@ def portfolio_stock_view(request):
     try:
         entry_id = request.matchdict['symbol']
     except IndexError:
-        return HTTPNotFound()
+        raise HTTPNotFound()
 
     try:
         query = request.dbsession.query(Stock)
-        stock_detail = query.filter(Stock.symbol == entry_id).first()
+        stock_detail = query.filter(
+            Stock.account_id == request.authenticated_userid).filter(
+                Stock.symbol == entry_id).one_or_none()
     except DBAPIError:
-        return DBAPIError(DB_ERR_MSG, content_type='txt/plain', status=500)
+        return Response(DB_ERR_MSG, content_type='txt/plain', status=500)
+
+    if stock_detail is None:
+        raise HTTPNotFound()
+    
+    return {
+        'stock': stock_detail
+    }
     
     # res = requests.get
     
