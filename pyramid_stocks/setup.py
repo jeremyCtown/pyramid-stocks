@@ -9,6 +9,7 @@ with open(os.path.join(here, 'CHANGES.txt')) as f:
     CHANGES = f.read()
 
 requires = [
+    'cryptacular',
     'plaster_pastedeploy',
     'psycopg2',
     'pyramid >= 1.9a',
@@ -40,7 +41,7 @@ setup(
         'Topic :: Internet :: WWW/HTTP',
         'Topic :: Internet :: WWW/HTTP :: WSGI :: Application',
     ],
-    author='',
+    author='Jeremy Crawford',
     author_email='',
     url='',
     keywords='web pyramid pylons',
