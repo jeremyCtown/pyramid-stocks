@@ -1,12 +1,16 @@
 from pyramid.httpexceptions import HTTPFound, HTTPBadRequest, HTTPUnauthorized
-from pyramid.security import
+from pyramid.security import NO_PERMISSION_REQUIRED, remember, forget
+from pyramid.response import Response
+from sqlalchemy.exc import DBAPIError, IntegrityError
 from pyramid.view import view_config
-from sqlalchemy.exc import 
+from ..models import Account
+from . import DB_ERR_MSG
 
 
-
-@view_config
-
+@view_config(
+    route_name='auth',
+    renderer='../templates/auth.jinja2',
+    permission=NO_PERMISSION_REQUIRED)
 def auth_view(request):
     if request.method == 'POST':
         try:
@@ -25,13 +29,6 @@ def auth_view(request):
             )
 
             headers = remember(request, userid=instance.username)
-            # query = request.dbsession.query(Account)
-            # is_in_db = query.filter(Account.username == instance.username).one_or_none()
-            # request.dbsession.add(instance)
-            # if is_in_db is None:
-            #     request.dbsession.add(instance)
-            # else:
-            #     return HTTPConflict('That username already exists. Please try again')
 
             try:
                 request.dbsession.add(instance)
@@ -39,7 +36,7 @@ def auth_view(request):
             except IntegrityError:
                 return {'error': 'something went wrong'}
 
-            return HTTPFound(location=request.route_url('entries'), headers=headers)
+            return HTTPFound(location=request.route_url('portfolio'), headers=headers)
 
         except DBAPIError:
             return Response(DB_ERR_MSG, content_type='text/plain', status=500)
@@ -55,7 +52,7 @@ def auth_view(request):
         is_authenticated = Account.check_credentials(request, username, password)
         if is_authenticated[0]:
             headers = remember(request, userid=username)
-            return HTTPFound(location=request.route_url('entries'), headers=headers)
+            return HTTPFound(location=request.route_url('portfolio'), headers=headers)
         else:
             return HTTPUnauthorized('401 - NotAuthorized')
 
