@@ -14,8 +14,9 @@ class MyRoot:
         (Allow, Authenticated, 'secret'),
     ]
 
+
 def includeme(config):
-    auth_secret = os.environ.get('AUTH_SECRET', 'itsasecret')
+    auth_secret = os.environ.get('AUTH_SECRET', 'itsaseekret')
     authz_policy = ACLAuthorizationPolicy()
     authn_policy = AuthTktAuthenticationPolicy(
         secret = auth_secret,
@@ -27,7 +28,7 @@ def includeme(config):
     config.set_default_permission('secret')
     config.set_root_factory(MyRoot)
 
-    session_secret = os.environ.get('SESSION_SECRET', 'itsalsoasecret')
+    session_secret = os.environ.get('SESSION_SECRET', 'itsalsoaseekret')
     session_factory = SignedCookieSessionFactory(session_secret)
 
     config.set_session_factory(session_factory)
