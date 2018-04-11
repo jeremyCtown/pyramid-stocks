@@ -42,16 +42,3 @@ def main(argv=sys.argv):
 
     engine = get_engine(settings)
     Base.metadata.create_all(engine)
-
-    # session_factory = get_session_factory(engine)
-
-    # with transaction.manager:
-    #     dbsession = get_tm_session(session_factory, transaction.manager)
-
-    #     # model = MyModel(name='one', value=1)
-    #     # dbsession.add(model)
-
-    #     from ..sample_data import MOCK_DATA
-    #     for entry in MOCK_DATA:
-    #         e = Stock(**entry)
-    #         dbsession.add(e)
