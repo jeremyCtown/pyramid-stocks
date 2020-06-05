@@ -15,7 +15,7 @@ cookiecutter==1.6.0
 coverage==4.5.1
 cycler==0.10.0
 decorator==4.2.1
-Django==1.11.12
+Django==1.11.29
 entrypoints==0.2.3
 enum34==1.1.6
 env==0.1.0
